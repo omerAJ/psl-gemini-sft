@@ -43,6 +43,9 @@ with open(jsonl_path, "w", encoding="utf-8") as out_file:
                                     "fileUri": f"{gcs_prefix}{filename}",
                                     "mimeType": "video/mp4"
                                 }
+                            },
+                            {
+                                "text": f"Which PSL word is being signed in this video?"
                             }
                         ]
                     },

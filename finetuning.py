@@ -8,10 +8,19 @@ from vertexai.tuning import sft
 # PROJECT_ID = "your-project-id"
 vertexai.init(project="finetuning-gemini-on-psl", location="us-central1")
 
+# sft_tuning_job = sft.train(
+#     source_model="gemini-2.5-flash",
+#     # 1.5 and 2.0 models use the same JSONL format
+#     train_dataset="gs://psl-video-captions/video_finetune.jsonl",
+# )
+
 sft_tuning_job = sft.train(
     source_model="gemini-2.5-flash",
-    # 1.5 and 2.0 models use the same JSONL format
     train_dataset="gs://psl-video-captions/video_finetune.jsonl",
+    epochs=60,
+    adapter_size=16,  ## used 8 by default
+    # learning_rate_multiplier=2.0,
+    tuned_model_display_name = "PSL finetuning r16e60",
 )
 
 # Polling for job completion
